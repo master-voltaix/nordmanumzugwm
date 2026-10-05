@@ -438,3 +438,100 @@ form.is-sent .form-success { display: block; }
   .feature h3 { font-size: 16px; }
   .feature p { font-size: 12.5px; }
 }
+
+/* ---------- Animationen ---------- */
+.progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--orange); transform: scaleX(0); transform-origin: left; z-index: 2; }
+
+/* Hero: Einstieg beim Laden */
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes kenburns { from { transform: scale(1.1); } to { transform: scale(1); } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.hero-bg { animation: fade 1s ease both; }
+.hero-bg img { animation: kenburns 2.4s cubic-bezier(.2,.7,.2,1) both; }
+.hero h1, .hero-copy p, .hero-actions { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+.hero h1 { animation-delay: .15s; }
+.hero-copy p { animation-delay: .32s; }
+.hero-actions { animation-delay: .48s; }
+.trust-strip ul { animation: rise .8s cubic-bezier(.2,.7,.2,1) .62s both; }
+.topbar { animation: fade .6s ease both; }
+
+/* Scroll-Reveal nur mit JS, damit Inhalte ohne JS sichtbar bleiben */
+.reveal { opacity: 1; transform: none; }
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.js .reveal.from-left { transform: translateX(-44px); }
+.js .reveal.from-right { transform: translateX(44px); }
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+/* Gestaffelt: Kinder erscheinen nacheinander */
+.js .reveal.stagger { opacity: 1; transform: none; }
+.js .reveal.stagger > * { opacity: 0; transform: translateY(24px); transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1), box-shadow .2s, border-color .2s; transition-delay: calc(var(--i, 0) * 80ms), calc(var(--i, 0) * 80ms), 0s, 0s; }
+.js .reveal.stagger.is-in > * { opacity: 1; transform: none; }
+.js .reveal.stagger.is-done > * { transition-delay: 0s; transition-duration: .25s; }
+.js .services.is-done .service:hover { transform: translateY(-4px); }
+.js .reviews.is-done .review:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.js .contact-list.is-done li:hover { transform: translateY(-3px); border-color: #f9c7a6; }
+
+/* Überschriften: Text schiebt sich aus einer Maske */
+.js .section-head.reveal { opacity: 1; transform: none; }
+.js .section-head h2 { clip-path: inset(0 0 100% 0); transform: translateY(22px); transition: clip-path .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.js .section-head p { opacity: 0; transform: translateY(14px); transition: opacity .7s ease .25s, transform .7s ease .25s; }
+.js .section-head.is-in h2 { clip-path: inset(-10% 0 -10% 0); transform: none; }
+.js .section-head.is-in p { opacity: 1; transform: none; }
+
+/* Bilder */
+.value-img, .feature, .contact-photo { overflow: hidden; }
+.value-img { border-radius: 8px; }
+.value-img img, .feature img, .contact-photo img { transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+.js .values .value-img img { transform: scale(1.18); }
+.js .values.is-in .value-img img { transform: scale(1); transition-delay: calc(var(--i, 0) * 80ms); }
+.value:hover .value-img img, .feature:hover img, .contact-photo:hover img { transform: scale(1.06) !important; transition-delay: 0s !important; }
+.value h3 { transition: color .2s; }
+.value:hover h3 { color: var(--orange); }
+
+/* Über uns: Bild wird aufgedeckt, Fläche und Badge folgen */
+.js .about-media img { clip-path: inset(0 100% 0 0); transition: clip-path 1s cubic-bezier(.2,.7,.2,1) .15s; }
+.js .about-media.is-in img { clip-path: inset(0); }
+.js .about-media::before { transform: scale(.6); opacity: 0; transform-origin: top right; transition: transform .8s cubic-bezier(.2,.7,.2,1) .45s, opacity .6s ease .45s; }
+.js .about-media.is-in::before { transform: none; opacity: 1; }
+@keyframes float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+.js .about-badge { opacity: 0; scale: .8; transition: opacity .5s ease .8s, scale .6s cubic-bezier(.3,1.5,.5,1) .8s; }
+.js .about-media.is-in .about-badge { opacity: 1; scale: 1; animation: float 5s ease-in-out 1.6s infinite; }
+.js .about-list li { opacity: 0; transform: translateX(-16px); transition: opacity .5s ease, transform .5s ease; transition-delay: calc(.3s + var(--i, 0) * 90ms); }
+.js .about-copy.is-in .about-list li { opacity: 1; transform: none; }
+
+/* Angebot: LKW fährt ein, Haken erscheinen */
+.js .quote-truck { transform: translateX(70%); opacity: 0; transition: transform 1.2s cubic-bezier(.2,.8,.2,1) .3s, opacity .4s ease .3s; }
+.js .quote.is-in .quote-truck { transform: none; opacity: 1; }
+.js .checks li { opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; transition-delay: calc(.35s + var(--i, 0) * 100ms); }
+.js .quote.is-in .checks li { opacity: 1; transform: none; }
+
+/* Ablauf: Linie zeichnet sich, Nummern ploppen */
+.js .steps::before { transform: scaleX(0); transform-origin: left; transition: transform 1.4s ease .2s; }
+.js .steps.is-in::before { transform: none; }
+@keyframes pop { 0% { scale: .4; } 70% { scale: 1.12; } 100% { scale: 1; } }
+.js .steps.is-in li::before { animation: pop .5s cubic-bezier(.3,1.4,.5,1) both; animation-delay: calc(.15s + var(--i, 0) * 80ms); }
+
+/* Kleine Hover-Effekte */
+.btn .icon { transition: transform .2s; }
+.btn:hover .icon { transform: translateX(4px); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(243,107,22,.3); }
+.service-icon .icon, .why-icon { transition: transform .3s cubic-bezier(.3,1.5,.5,1); }
+.service:hover .service-icon .icon { transform: translateY(-3px) scale(1.08); }
+.service-icon::before { transition: transform .3s ease; }
+.service:hover .service-icon::before { transform: scale(1.35); }
+.why li:hover .why-icon { transform: translateY(-4px) scale(1.06); }
+.social a:hover { transform: translateY(-3px); }
+.faq details[open] p { animation: rise .4s ease both; }
+@keyframes ring { 0%, 86%, 100% { rotate: 0deg; } 89% { rotate: -14deg; } 92% { rotate: 12deg; } 95% { rotate: -8deg; } 98% { rotate: 5deg; } }
+.sticky-cta .icon { animation: ring 2.6s ease-in-out infinite; }
+
+@media (max-width: 900px) {
+  .js .steps::before { transform: scaleY(0); transform-origin: top; }
+  .js .reveal.from-left, .js .reveal.from-right { transform: translateY(28px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal, .js .reveal.stagger > *, .js .section-head h2, .js .section-head p, .js .about-media img, .js .about-media::before, .js .about-badge, .js .about-list li, .js .quote-truck, .js .checks li, .js .steps::before, .js .values .value-img img { opacity: 1 !important; transform: none !important; clip-path: none !important; scale: 1 !important; }
+}
+
+main { overflow-x: clip; }
