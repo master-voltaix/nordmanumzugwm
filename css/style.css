@@ -806,3 +806,18 @@ main { overflow-x: clip; }
 .hero-kicker { display: block; }
 .hero-kicker .icon { display: inline-block; vertical-align: -3px; margin-right: 8px; }
 .review footer .avatar-i { color: #fff; font-size: 14px; }
+
+/* Hero-Feinschliff */
+.hero-ads .hero-copy p.hero-kicker { color: #ffb88a; max-width: none; font-size: 13px; margin-top: 26px; white-space: nowrap; }
+.hero-ads h1 { font-size: 56px; line-height: 1.08; margin-top: 14px; }
+.hero-ads .hero-bg::after { background: linear-gradient(100deg, rgba(8, 19, 44, .97) 0%, rgba(10, 24, 53, .92) 40%, rgba(10, 24, 53, .7) 70%, rgba(10, 24, 53, .5) 100%); }
+@media (max-width: 1180px) { .hero-ads h1 { font-size: 44px; } }
+@media (max-width: 640px) {
+  .hero-ads h1 { font-size: 32px; }
+  .hero-ads .hero-copy p.hero-kicker { font-size: 11px; margin-top: 18px; letter-spacing: .06em; }
+}
+.hero-ads .hero-copy { max-width: 720px; }
+.hero-ads h1 { font-size: 50px; text-wrap: wrap; }
+@media (max-width: 1180px) { .hero-ads h1 { font-size: 40px; } }
+@media (max-width: 980px) { .hero-ads .hero-copy { max-width: none; } }
+@media (max-width: 640px) { .hero-ads h1 { font-size: 32px; } }
